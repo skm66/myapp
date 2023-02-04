@@ -37,11 +37,19 @@ class DashboardActivity : AppCompatActivity() {
         arrList.add(DashboardItem(R.drawable.ic_launcher_background,700))
         arrList.add(DashboardItem(R.drawable.ic_launcher_background,700))
 
+
+
+
+
+
     }
 
     private fun manageRecyclerView() {
         val layoutManager = GridLayoutManager(this,2)
         binding.rvDashboard.layoutManager = layoutManager
         binding.rvDashboard.adapter = DashboardAdapter(this,arrList)
+
+
+
     }
 }
