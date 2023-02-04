@@ -24,6 +24,8 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun addData() {
+
+
         arrList.add(DashboardItem(R.drawable.ic_launcher_background,100))
         arrList.add(DashboardItem(R.drawable.ic_launcher_background,200))
         arrList.add(DashboardItem(R.drawable.ic_launcher_background,300))
