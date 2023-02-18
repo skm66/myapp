@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.addProduct.AddProductActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtVw_addProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Product"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:padding="20dp"/>
+
+    <TextView
+        android:id="@+id/txtVw_fillDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter product details below to add the product!"
+        android:textSize="15sp"
+        android:layout_marginStart="20dp"
+        />
+
+    <TextView
+        android:id="@+id/txtVw_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        />
+
+    <EditText
+        android:id="@+id/edtTxt_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:hint="Product name"
+        android:textSize="12sp"
+        android:background="@drawable/white_bg_grey_border_with_corner_radius"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:id="@+id/txtVw_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        />
+
+    <EditText
+        android:id="@+id/edtTxt_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="Description"
+        android:textSize="12sp"
+        android:background="@drawable/white_bg_grey_border_with_corner_radius"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:id="@+id/txtVw_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        />
+
+    <EditText
+        android:id="@+id/edtTxt_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="Enter price"
+        android:textSize="12sp"
+        android:background="@drawable/white_bg_grey_border_with_corner_radius"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        />
+
+    <ImageView
+        android:id="@+id/imgVw_add_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/txtVw_media"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Media"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/rl_media"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/white_bg_with_dash"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/browse_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_browse_image"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:id="@+id/txtVw_click_for_browse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click here to browse your images"
+            android:textSize="12sp"
+            android:textColor="@color/teal_200"
+            android:layout_below="@+id/browse_img"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_showImg"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/white_bg_with_dash"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerVw_imgShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add upto 3 images in your product!"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        />
+
+    <Button
+        android:id="@+id/btn_addProd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>
