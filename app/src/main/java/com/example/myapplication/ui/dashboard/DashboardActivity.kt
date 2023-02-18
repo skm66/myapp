@@ -39,9 +39,6 @@ class DashboardActivity : AppCompatActivity() {
 
 
 
-
-
-
     }
 
     private fun manageRecyclerView() {
