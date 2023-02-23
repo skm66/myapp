@@ -89,11 +89,6 @@ class AddProductActivity : AppCompatActivity() {
             //contract.launch(imageUri)
         }
 
-        binding.rlEditProd.setOnClickListener {
-            CreateCustomDialog()
-            Toast.makeText(this,"clicked!!",Toast.LENGTH_LONG).show()
-        }
-
     }
 
     private fun createImageUri(): Uri? {
@@ -142,11 +137,12 @@ class AddProductActivity : AppCompatActivity() {
     private fun showImgRecyclerView(arrayImg : ArrayList<AddImageItem>){
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerVwImgShow.layoutManager=layoutManager
-        binding.recyclerVwImgShow.adapter=ShowImgAdapter(this, arrayImg)
+        binding.recyclerVwImgShow.adapter=ShowImgAdapter(this, arrayImg,)
     }
 
     private fun addImgData() {
 
     }
+
 
 }
