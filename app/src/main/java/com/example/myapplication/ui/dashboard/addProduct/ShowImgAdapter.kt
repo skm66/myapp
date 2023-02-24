@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.ShowimageItemLayoutBinding
-import com.example.myapplication.ui.dashboard.DashboardItem
 
 class ShowImgAdapter(
     var context: Context,
-    var arrayList: ArrayList<AddImageItem>) : RecyclerView.Adapter<ShowImgAdapter.ViewHolder>() {
+    var arrayList: ArrayList<AddImageItem>,
+    var listener: OnImageEditClick
+) : RecyclerView.Adapter<ShowImgAdapter.ViewHolder>() {
     inner class ViewHolder (var binding: ShowimageItemLayoutBinding) : RecyclerView.ViewHolder(binding.root){
     }
 
@@ -26,10 +27,11 @@ class ShowImgAdapter(
         var item= arrayList[position]
        holder.binding.imgVwShowimg.setImageURI(item.image)
         holder.binding.rlEditProd.setOnClickListener {
-
+            listener.onItemClick(position)
         }
     }
-
-
+     interface OnImageEditClick{
+         fun onItemClick(position: Int)
+     }
 
 }

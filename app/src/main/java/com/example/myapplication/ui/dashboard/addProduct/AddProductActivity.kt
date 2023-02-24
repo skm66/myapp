@@ -14,11 +14,10 @@ import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityAddProductBinding
-import com.example.myapplication.ui.dashboard.DashboardItem
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.io.File
 
-class AddProductActivity : AppCompatActivity() {
+class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick {
 
     lateinit var imageUri : Uri
 
@@ -28,17 +27,15 @@ class AddProductActivity : AppCompatActivity() {
         ActivityAddProductBinding.inflate(layoutInflater)
     }
 
+    private var listener: ShowImgAdapter.OnImageEditClick? = null
+
     val contractCamera = registerForActivityResult(ActivityResultContracts.TakePicture()){
-//        binding.imgVwAddImage.visibility = View.VISIBLE
-//        binding.imgVwAddImage.setImageURI(null)
-//        binding.imgVwAddImage.setImageURI(imageUri)
         arrList= ArrayList()
 
         binding.rlMedia.visibility=View.GONE
         binding.rlShowImg.visibility=View.VISIBLE
 
         arrList.add(AddImageItem(imageUri))
-
         showImgRecyclerView(arrList)
 
     }
@@ -80,12 +77,14 @@ class AddProductActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        listener = this
+
 
         imageUri = createImageUri()!!
 
         binding.rlMedia.setOnClickListener {
 
-            CreateCustomDialog()
+            createCustomDialog()
             //contract.launch(imageUri)
         }
 
@@ -97,7 +96,7 @@ class AddProductActivity : AppCompatActivity() {
         "com.example.myapplication.fileProvider", image)
     }
 
-    fun CreateCustomDialog(){
+    fun createCustomDialog(){
         // on below line we are creating a new bottom sheet dialog.
         val dialog = BottomSheetDialog(this)
 
@@ -137,11 +136,11 @@ class AddProductActivity : AppCompatActivity() {
     private fun showImgRecyclerView(arrayImg : ArrayList<AddImageItem>){
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerVwImgShow.layoutManager=layoutManager
-        binding.recyclerVwImgShow.adapter=ShowImgAdapter(this, arrayImg,)
+        binding.recyclerVwImgShow.adapter=ShowImgAdapter(this, arrayImg, listener!!)
     }
 
-    private fun addImgData() {
-
+    override fun onItemClick(position: Int) {
+        createCustomDialog()
     }
 
 
