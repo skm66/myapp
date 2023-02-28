@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,7 +61,7 @@ class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick 
             }
 
             else if(it.data?.data!=null){
-                arrList.add(AddImageItem(it.data?.data!!))
+                arrList.add(indexPos, AddImageItem(it.data?.data!!))
             }
 
             binding.rlMedia.visibility=View.GONE
@@ -84,7 +83,7 @@ class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick 
 
         binding.rlMedia.setOnClickListener {
 
-            createCustomDialog()
+            createCustomDialog(false)
             //contract.launch(imageUri)
         }
 
@@ -96,7 +95,7 @@ class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick 
         "com.example.myapplication.fileProvider", image)
     }
 
-    fun createCustomDialog(){
+    fun createCustomDialog(wantToEdit: Boolean) {
         // on below line we are creating a new bottom sheet dialog.
         val dialog = BottomSheetDialog(this)
 
@@ -115,12 +114,21 @@ class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick 
         gallery.setOnClickListener {
             //st.launch("image/*")
 
-            val intent= Intent()
-            intent.type= "image/*"
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-            intent.action = Intent.ACTION_GET_CONTENT
-            startForResult.launch(intent)
+            if(wantToEdit){
+                val intent= Intent()
+                intent.type= "image/*"
+                intent.action = Intent.ACTION_GET_CONTENT
+                startForResult.launch(intent)
+            }
+            else{
+                val intent= Intent()
+                intent.type= "image/*"
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                intent.action = Intent.ACTION_GET_CONTENT
+                startForResult.launch(intent)
+            }
             dialog.dismiss()
+
         }
 
         // on below line we are setting
@@ -139,8 +147,10 @@ class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick 
         binding.recyclerVwImgShow.adapter=ShowImgAdapter(this, arrayImg, listener!!)
     }
 
-    override fun onItemClick(position: Int) {
-        createCustomDialog()
+    var indexPos :Int=0
+    override fun onItemClick(position: Int, wantToEdit: Boolean) {
+        indexPos=position
+        createCustomDialog(wantToEdit)
     }
 
 
