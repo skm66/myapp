@@ -27,11 +27,11 @@ class ShowImgAdapter(
         var item= arrayList[position]
        holder.binding.imgVwShowimg.setImageURI(item.image)
         holder.binding.rlEditProd.setOnClickListener {
-            listener.onItemClick(position)
+            listener.onItemClick(position, true)
         }
     }
      interface OnImageEditClick{
-         fun onItemClick(position: Int)
+         fun onItemClick(position: Int, wantToEdit : Boolean)
      }
 
 }
