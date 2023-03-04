@@ -48,7 +48,6 @@ class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick 
     val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if (it.resultCode == Activity.RESULT_OK) { //if images are selected
             val intent = it.data
-            arrList= ArrayList()
             Log.e("aaa", "success")
             // Handle the Intent
 
@@ -61,7 +60,12 @@ class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick 
             }
 
             else if(it.data?.data!=null){
-                arrList.add(indexPos, AddImageItem(it.data?.data!!))
+                if(arrList.isEmpty()){
+                    arrList.add(indexPos, AddImageItem(it.data?.data!!))
+                }
+                else{
+                    arrList.set(indexPos, AddImageItem(it.data?.data!!))
+                }
             }
 
             binding.rlMedia.visibility=View.GONE
@@ -78,6 +82,7 @@ class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick 
         setContentView(binding.root)
         listener = this
 
+        arrList= ArrayList()
 
         imageUri = createImageUri()!!
 
@@ -85,6 +90,12 @@ class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick 
 
             createCustomDialog(false)
             //contract.launch(imageUri)
+        }
+
+        binding.txtVwViewAll.setOnClickListener {
+            val intent = Intent(this, ShowImageActivity::class.java)
+            intent.putExtra("Image_to_be_send", arrList)
+            startActivity(intent)
         }
 
     }
@@ -152,6 +163,8 @@ class AddProductActivity : AppCompatActivity(), ShowImgAdapter.OnImageEditClick 
         indexPos=position
         createCustomDialog(wantToEdit)
     }
+
+
 
 
 }
