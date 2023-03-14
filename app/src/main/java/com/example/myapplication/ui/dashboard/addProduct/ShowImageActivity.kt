@@ -19,6 +19,6 @@ class ShowImageActivity : AppCompatActivity() {
         intent?.let {
             imgList = it.getSerializableExtra("Image_to_be_send") as ArrayList<AddImageItem>?
         }
-        ViewPagerAdapter(this, imgList)
+        binding.vwPagerShowAllImg.adapter = ViewPagerAdapter(this, imgList)
     }
 }
